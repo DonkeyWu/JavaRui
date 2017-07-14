@@ -1,7 +1,7 @@
 package com.yt.tool.http.connection.face;
 
-import com.yt.tool.http.param.BaseConnectParam;
-import com.yt.tool.http.result.BaseConnectResult;
+import com.yt.tool.http.param.face.IBaseConnectParam;
+import com.yt.tool.http.result.face.IBaseConnectResult;
 
 /**
  * @author lyen.wu
@@ -13,11 +13,13 @@ public interface IBaseConnection {
 	 * 设置request的参数
 	 * @param connectParam
 	 */
-	public void setConnectParam(BaseConnectParam connectParam);
+	public void setConnectParam(IBaseConnectParam connectParam);
+	/**设置url，自动生成baseConnectParam*/
+	public void setConnectParam(String url);
 	/**
 	 * 获取返回的结果对象
 	 * */
-	public BaseConnectResult getConnectResult() ;
+	public IBaseConnectResult getConnectResult() ;
 	public void post() throws Exception;
 	public void get() throws Exception;
 	/**

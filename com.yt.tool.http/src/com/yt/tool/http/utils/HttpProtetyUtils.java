@@ -34,5 +34,31 @@ public class HttpProtetyUtils {
 			conn.setRequestProperty(key, map.get(key));
 		}
 	}
+	
+	/**
+	 * 设置cookie内容，会自动转成map
+	 * 第一个属性同时会存入，only-sessionId
+	 * @param cookieContent
+	 */
+	public static void setCookie(Map<String,String> cookieMap, String cookieContent){
+		if(cookieContent == null){
+			return ;
+		}
+		
+		String[] cookies = cookieContent.split(";");
+		for( int i = 0 ; i < cookies.length ; i ++ ){
+			String[] cookie = cookies[i].split("=");
+			String key = cookie[0];
+			String value = "";
+			if(cookie.length > 1){
+				value = cookie[1];
+			}
+			cookieMap.put(key , value);
+			if(i == 0){
+				cookieMap.put("only-sessionId", value);
+			}
+		}
+		
+	}
 
 }

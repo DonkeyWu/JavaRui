@@ -3,6 +3,7 @@ package com.yt.tool.http.param;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.yt.tool.http.param.face.IBaseConnectParam;
 import com.yt.tool.http.utils.HttpProtetyUtils;
 
 
@@ -12,10 +13,10 @@ import com.yt.tool.http.utils.HttpProtetyUtils;
  * @author lyen.wu
  * 
  */
-public class BaseConnectParam {
+public class BaseConnectParam implements IBaseConnectParam{
 
 	//表头参数设置
-	private Map<String, String> propertiesMap = new HashMap<String, String>();
+	private Map<String, String> propertyMap = new HashMap<String, String>();
 	//get或者post的参数
 	private String param = "";
 	//请求的链接
@@ -44,7 +45,7 @@ public class BaseConnectParam {
 		super();
 		this.url = url;
 		if(propertiesMap != null){
-			this.propertiesMap = propertiesMap;
+			this.propertyMap = propertiesMap;
 		}
 		this.param = param;
 	}
@@ -61,21 +62,21 @@ public class BaseConnectParam {
 	 * 设置通用的property属性
 	 */
 	public void setCommonProperty() {
-		propertiesMap = HttpProtetyUtils.getCommonProtety();
+		propertyMap = HttpProtetyUtils.getCommonProtety();
 	}
 
 	@Override
 	public String toString() {
-		return "ConnectParam [propertiesMap=" + propertiesMap + ", param="
+		return "ConnectParam [propertiesMap=" + propertyMap + ", param="
 				+ param + ", url=" + url + "]";
 	}
 
-	public Map<String, String> getPropertiesMap() {
-		return propertiesMap;
+	public Map<String, String> getPropertyMap() {
+		return propertyMap;
 	}
 
-	public void setPropertiesMap(Map<String, String> propertiesMap) {
-		this.propertiesMap = propertiesMap;
+	public void setPropertyMap(Map<String, String> propertiesMap) {
+		this.propertyMap = propertiesMap;
 	}
 
 	public String getParam() {

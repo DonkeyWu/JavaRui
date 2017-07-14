@@ -19,8 +19,8 @@ public class Demo {
     	String param = "";
     	BaseConnectParam connectParam = new BaseConnectParam("http://10.143.173.61:7103/PS/TEST");
     	//删除类property的属性，就无法访问
-    	connectParam.getPropertiesMap().put("appid", "hello");
-		connectParam.getPropertiesMap().put("appkey", "word");
+    	connectParam.getPropertyMap().put("appid", "hello");
+		connectParam.getPropertyMap().put("appkey", "word");
     	connectParam.setParam(param);
         IBaseConnection connection = new StringConnection();
         connection.setConnectParam(connectParam);
@@ -66,5 +66,14 @@ public class Demo {
         connection.get();
         log.info(connection.getResultObj()+"");
     }
+    
+    @Test
+    public void testStringGet2() throws Exception{
+        IBaseConnection connection = new StringConnection();
+        connection.setConnectParam("http://www.baidu.com");
+        connection.get();
+        log.info(connection.getResultObj()+"");
+    }
+    
     
 } 

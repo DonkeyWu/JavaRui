@@ -14,7 +14,8 @@ import javax.net.ssl.SSLSession;
 
 import com.yt.tool.http.connection.face.IBaseConnection;
 import com.yt.tool.http.param.BaseConnectParam;
-import com.yt.tool.http.result.BaseConnectResult;
+import com.yt.tool.http.param.face.IBaseConnectParam;
+import com.yt.tool.http.result.face.IBaseConnectResult;
 import com.yt.tool.http.utils.HttpProtetyUtils;
 import com.yt.tool.log.ConnLogFactory;
 import com.yt.tool.log.IConnLog;
@@ -27,8 +28,8 @@ import com.yt.tool.log.IConnLog;
 public abstract class BaseConnection implements IBaseConnection {
 	private static IConnLog log = null;
 
-	protected BaseConnectResult connectResult;
-	protected BaseConnectParam connectParam;
+	protected IBaseConnectResult connectResult;
+	protected IBaseConnectParam connectParam;
 
 	public BaseConnection() {
 		log = ConnLogFactory.getLogger(this.getClass());
@@ -80,16 +81,22 @@ public abstract class BaseConnection implements IBaseConnection {
 	}
 
 	@Override
-	public void setConnectParam(BaseConnectParam connectParam){
+	public void setConnectParam(IBaseConnectParam connectParam){
 		checkParamCls(connectParam);
 		this.connectParam = connectParam;
+	}
+
+	@Override
+	public void setConnectParam(String url) {
+		setConnectParam(new BaseConnectParam(url));
+		
 	}
 	
 	/**
 	 * 检测类，或者参数是否足够
 	 * @param connectParam
 	 */
-	protected void checkParamCls(BaseConnectParam connectParam){
+	protected void checkParamCls(IBaseConnectParam connectParam){
 		
 	}
 
@@ -174,10 +181,10 @@ public abstract class BaseConnection implements IBaseConnection {
 			// 打开和URL之间的连接
 			HttpURLConnection conn = (HttpURLConnection) realUrl
 					.openConnection();
-			if (connectParam.getPropertiesMap() == null || connectParam.getPropertiesMap().size() == 0) {
-				connectParam.setCommonProperty();
+			if (connectParam.getPropertyMap() == null || connectParam.getPropertyMap().size() == 0) {
+				connectParam.setPropertyMap(HttpProtetyUtils.getCommonProtety());
 			}
-			Map<String, String> map = connectParam.getPropertiesMap();
+			Map<String, String> map = connectParam.getPropertyMap();
 			// 设置通用的请求属性
 			HttpProtetyUtils.setRequestProperty(conn, map);
 			// 设置cookie
@@ -202,7 +209,7 @@ public abstract class BaseConnection implements IBaseConnection {
 			connectResult.dealIn(connectParam.getCharsetCode());
 			// 定义BufferedReader输入流来读取URL的响应
 			String cookieValue = conn.getHeaderField("Set-Cookie");
-			connectParam.setCookie(cookieValue);
+			HttpProtetyUtils.setCookie(connectParam.getCookieMap(), cookieValue);
 		} catch (Exception e) {
 			log.error("发送  "+type+" 请求出现异常！" + e);
 			throw e;

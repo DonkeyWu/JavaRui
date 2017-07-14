@@ -2,13 +2,15 @@ package com.yt.tool.http.result;
 
 import java.io.InputStream;
 
+import com.yt.tool.http.result.face.IBaseConnectResult;
+
 
 /**
  * 
  * @author lyen.wu
  *
  */
-public abstract class BaseConnectResult {
+public abstract class BaseConnectResult implements IBaseConnectResult{
 
 	
 	/**
