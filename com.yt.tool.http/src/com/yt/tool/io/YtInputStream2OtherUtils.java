@@ -1,17 +1,20 @@
-package com.yt.tool.utils;
+package com.yt.tool.io;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+
 /**
  * inputStream流处理方法
- * @author crwua
- *
+ * @author lyen.wu
+ * email:flash_rui@126.com
+ * 2017-7-17
  */
-public class In2ResultUtils {
+public class YtInputStream2OtherUtils {
 
 	/**
 	 * in流转string
@@ -95,6 +98,22 @@ public class In2ResultUtils {
 
 		}
 	}
-	
+	/**
+     * 从输入流获取数据
+     * @param inputStream
+     * @return
+     * @throws Exception
+     */
+    public static byte[] in2Byte(InputStream inputStream) throws Exception{
+        byte[] buffer = new byte[1024];
+        int len = -1;
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        while((len = inputStream.read(buffer)) != -1){
+            outputStream.write(buffer, 0, len);
+        }
+        outputStream.close();
+        inputStream.close();
+        return outputStream.toByteArray();
+    }
 	
 }

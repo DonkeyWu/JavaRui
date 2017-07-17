@@ -1,20 +1,20 @@
 package com.yt.tool.http.connection;
 
-import com.yt.tool.http.result.BaseConnectResult;
-import com.yt.tool.http.result.StringConnectResult;
+import com.yt.tool.http.result.YtBaseConnectResult;
+import com.yt.tool.http.result.YtStringConnectResult;
 
 /**
  * 文本网络请求，获取网页的内容或者回包
  * @author lyen.wu
  *
  */
-public class StringConnection extends BaseConnection{
+public class YtStringConnection extends YtBaseConnection{
 
-	private StringConnectResult stringConnectResult = null ;
+	private YtStringConnectResult stringConnectResult = null ;
 	@Override
-	public BaseConnectResult getConnectResult() {
+	public YtBaseConnectResult getConnectResult() {
 		if(stringConnectResult == null){
-			stringConnectResult =  new StringConnectResult();
+			stringConnectResult =  new YtStringConnectResult();
 		}
 			
 		return stringConnectResult;

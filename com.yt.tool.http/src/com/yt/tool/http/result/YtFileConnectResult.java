@@ -1,6 +1,6 @@
 package com.yt.tool.http.result;
 
-import com.yt.tool.utils.In2ResultUtils;
+import com.yt.tool.io.YtInputStream2OtherUtils;
 
 
 /**
@@ -9,14 +9,14 @@ import com.yt.tool.utils.In2ResultUtils;
  * @author lyen.wu
  * 
  */
-public class FileConnectResult extends BaseConnectResult {
+public class YtFileConnectResult extends YtBaseConnectResult {
 
 	/** 文件存放路径 */
 	private String filePath = "";
 
 	@Override
 	public void dealIn(String charset) throws Exception {
-		In2ResultUtils.in2File(in, filePath);
+		YtInputStream2OtherUtils.in2File(in, filePath);
 	}
 
 	public String getFilePath() {

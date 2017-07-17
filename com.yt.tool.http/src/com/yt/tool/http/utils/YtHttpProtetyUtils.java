@@ -4,7 +4,7 @@ import java.net.HttpURLConnection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HttpProtetyUtils {
+public class YtHttpProtetyUtils {
 	/**
 	 * 获取通用的requestPropertity设置
 	 * 

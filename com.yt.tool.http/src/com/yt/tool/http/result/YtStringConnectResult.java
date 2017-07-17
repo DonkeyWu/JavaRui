@@ -1,6 +1,6 @@
 package com.yt.tool.http.result;
 
-import com.yt.tool.utils.In2ResultUtils;
+import com.yt.tool.io.YtInputStream2OtherUtils;
 
 
 
@@ -9,13 +9,13 @@ import com.yt.tool.utils.In2ResultUtils;
  * @author lyen.wu
  *
  */
-public class StringConnectResult extends BaseConnectResult {
+public class YtStringConnectResult extends YtBaseConnectResult {
 
 	private String content = "";
 
 	@Override
 	public void dealIn(String charsetCode) throws Exception {
-		content = In2ResultUtils.in2String(in, charsetCode);
+		content = YtInputStream2OtherUtils.in2String(in, charsetCode);
 
 	}
 

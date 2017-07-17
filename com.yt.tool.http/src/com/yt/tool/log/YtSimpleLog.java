@@ -1,9 +1,9 @@
 package com.yt.tool.log;
 
-public class SimpleLog implements IConnLog{
+public class YtSimpleLog implements IYtConnLog{
 
 	private String clsName = "";
-	public SimpleLog(Class<?> cls) {
+	public YtSimpleLog(Class<?> cls) {
 		clsName = cls.getName();
 	}
 	

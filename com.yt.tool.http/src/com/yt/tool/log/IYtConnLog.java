@@ -1,6 +1,6 @@
 package com.yt.tool.log;
 
-public interface IConnLog {
+public interface IYtConnLog {
 
 	public void info(String o);
 	

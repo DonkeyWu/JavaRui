@@ -8,7 +8,7 @@ import java.io.InputStream;
  * @author lyen.wu
  *
  */
-public interface IBaseConnectResult {
+public interface IYtBaseConnectResult {
 
 	public int getStateCode() ;
 	public void setStateCode(int stateCode);

@@ -12,27 +12,27 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSession;
 
-import com.yt.tool.http.connection.face.IBaseConnection;
-import com.yt.tool.http.param.BaseConnectParam;
-import com.yt.tool.http.param.face.IBaseConnectParam;
-import com.yt.tool.http.result.face.IBaseConnectResult;
-import com.yt.tool.http.utils.HttpProtetyUtils;
-import com.yt.tool.log.ConnLogFactory;
-import com.yt.tool.log.IConnLog;
+import com.yt.tool.http.connection.face.IYtBaseConnection;
+import com.yt.tool.http.param.YtBaseConnectParam;
+import com.yt.tool.http.param.face.IYtBaseConnectParam;
+import com.yt.tool.http.result.face.IYtBaseConnectResult;
+import com.yt.tool.http.utils.YtHttpProtetyUtils;
+import com.yt.tool.log.YtConnLogFactory;
+import com.yt.tool.log.IYtConnLog;
 
 /**
  * 基础的网络请求类，封装了总体流程
  * @author lyen.wu
  *
  */
-public abstract class BaseConnection implements IBaseConnection {
-	private static IConnLog log = null;
+public abstract class YtBaseConnection implements IYtBaseConnection {
+	private static IYtConnLog log = null;
 
-	protected IBaseConnectResult connectResult;
-	protected IBaseConnectParam connectParam;
+	protected IYtBaseConnectResult connectResult;
+	protected IYtBaseConnectParam connectParam;
 
-	public BaseConnection() {
-		log = ConnLogFactory.getLogger(this.getClass());
+	public YtBaseConnection() {
+		log = YtConnLogFactory.getLogger(this.getClass());
 		
 	}
 
@@ -81,14 +81,14 @@ public abstract class BaseConnection implements IBaseConnection {
 	}
 
 	@Override
-	public void setConnectParam(IBaseConnectParam connectParam){
+	public void setConnectParam(IYtBaseConnectParam connectParam){
 		checkParamCls(connectParam);
 		this.connectParam = connectParam;
 	}
 
 	@Override
 	public void setConnectParam(String url) {
-		setConnectParam(new BaseConnectParam(url));
+		setConnectParam(new YtBaseConnectParam(url));
 		
 	}
 	
@@ -96,7 +96,7 @@ public abstract class BaseConnection implements IBaseConnection {
 	 * 检测类，或者参数是否足够
 	 * @param connectParam
 	 */
-	protected void checkParamCls(IBaseConnectParam connectParam){
+	protected void checkParamCls(IYtBaseConnectParam connectParam){
 		
 	}
 
@@ -182,13 +182,13 @@ public abstract class BaseConnection implements IBaseConnection {
 			HttpURLConnection conn = (HttpURLConnection) realUrl
 					.openConnection();
 			if (connectParam.getPropertyMap() == null || connectParam.getPropertyMap().size() == 0) {
-				connectParam.setPropertyMap(HttpProtetyUtils.getCommonProtety());
+				connectParam.setPropertyMap(YtHttpProtetyUtils.getCommonProtety());
 			}
 			Map<String, String> map = connectParam.getPropertyMap();
 			// 设置通用的请求属性
-			HttpProtetyUtils.setRequestProperty(conn, map);
+			YtHttpProtetyUtils.setRequestProperty(conn, map);
 			// 设置cookie
-			HttpProtetyUtils.setRequestProperty(conn, connectParam.getCookieMap());
+			YtHttpProtetyUtils.setRequestProperty(conn, connectParam.getCookieMap());
 			//设置302自动跳转
 			conn.setInstanceFollowRedirects(connectParam.isAutoRedirect());
 			
@@ -209,7 +209,7 @@ public abstract class BaseConnection implements IBaseConnection {
 			connectResult.dealIn(connectParam.getCharsetCode());
 			// 定义BufferedReader输入流来读取URL的响应
 			String cookieValue = conn.getHeaderField("Set-Cookie");
-			HttpProtetyUtils.setCookie(connectParam.getCookieMap(), cookieValue);
+			YtHttpProtetyUtils.setCookie(connectParam.getCookieMap(), cookieValue);
 		} catch (Exception e) {
 			log.error("发送  "+type+" 请求出现异常！" + e);
 			throw e;

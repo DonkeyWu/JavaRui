@@ -3,7 +3,7 @@ package com.yt.tool.http.param.face;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.yt.tool.http.utils.HttpProtetyUtils;
+import com.yt.tool.http.utils.YtHttpProtetyUtils;
 
 
 /**
@@ -12,7 +12,7 @@ import com.yt.tool.http.utils.HttpProtetyUtils;
  * @author lyen.wu
  * 
  */
-public interface IBaseConnectParam {
+public interface IYtBaseConnectParam {
 
 	/**
 	 * 获取url链接

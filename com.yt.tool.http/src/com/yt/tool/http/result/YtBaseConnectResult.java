@@ -2,7 +2,7 @@ package com.yt.tool.http.result;
 
 import java.io.InputStream;
 
-import com.yt.tool.http.result.face.IBaseConnectResult;
+import com.yt.tool.http.result.face.IYtBaseConnectResult;
 
 
 /**
@@ -10,7 +10,7 @@ import com.yt.tool.http.result.face.IBaseConnectResult;
  * @author lyen.wu
  *
  */
-public abstract class BaseConnectResult implements IBaseConnectResult{
+public abstract class YtBaseConnectResult implements IYtBaseConnectResult{
 
 	
 	/**

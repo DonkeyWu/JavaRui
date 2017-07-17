@@ -3,8 +3,8 @@ package com.yt.tool.http.param;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.yt.tool.http.param.face.IBaseConnectParam;
-import com.yt.tool.http.utils.HttpProtetyUtils;
+import com.yt.tool.http.param.face.IYtBaseConnectParam;
+import com.yt.tool.http.utils.YtHttpProtetyUtils;
 
 
 /**
@@ -13,7 +13,7 @@ import com.yt.tool.http.utils.HttpProtetyUtils;
  * @author lyen.wu
  * 
  */
-public class BaseConnectParam implements IBaseConnectParam{
+public class YtBaseConnectParam implements IYtBaseConnectParam{
 
 	//表头参数设置
 	private Map<String, String> propertyMap = new HashMap<String, String>();
@@ -33,14 +33,14 @@ public class BaseConnectParam implements IBaseConnectParam{
 	private boolean autoRedirect = true;
 	
 
-	public BaseConnectParam(String url, String param) {
+	public YtBaseConnectParam(String url, String param) {
 		this(url,null,null,param);
 	}
-	public BaseConnectParam(String url) {
+	public YtBaseConnectParam(String url) {
 		this(url,"");
 	}
 
-	public BaseConnectParam(String url, Map<String, String> propertiesMap,
+	public YtBaseConnectParam(String url, Map<String, String> propertiesMap,
 			Map<String, String> headerMap, String param) {
 		super();
 		this.url = url;
@@ -62,7 +62,7 @@ public class BaseConnectParam implements IBaseConnectParam{
 	 * 设置通用的property属性
 	 */
 	public void setCommonProperty() {
-		propertyMap = HttpProtetyUtils.getCommonProtety();
+		propertyMap = YtHttpProtetyUtils.getCommonProtety();
 	}
 
 	@Override

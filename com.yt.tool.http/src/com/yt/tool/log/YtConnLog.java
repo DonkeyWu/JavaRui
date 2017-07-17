@@ -3,11 +3,11 @@ package com.yt.tool.log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ConnLog implements IConnLog{
+public class YtConnLog implements IYtConnLog{
 
 	private  Logger log = null;
 	
-	public ConnLog(Class<?> cls) {
+	public YtConnLog(Class<?> cls) {
 		log = LoggerFactory.getLogger(cls);
 	}
 	
